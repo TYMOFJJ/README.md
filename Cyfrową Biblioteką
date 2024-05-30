@@ -1,0 +1,83 @@
+System Zarządzania Cyfrową Biblioteką
+
+1. Spis Treści
+2. Wstęp
+3. Opis Projektu
+4. Lista Funkcjonalności
+5. Instrukcja Uruchomienia
+6. Struktura Projektu
+7. Model Danych
+8. Przykładowe Dane Wejściowe
+
+Wstęp
+Celem projektu jest stworzenie aplikacji webowej do zarządzania cyfrową biblioteką. 
+Aplikacja umożliwia użytkownikom przeglądanie katalogu książek, dodawanie nowych pozycji, edytowanie istniejących oraz usuwanie książek. 
+Projekt został zrealizowany w technologii Node.js z wykorzystaniem wzorca architektonicznego MVC oraz Server-Side Rendering (SSR).
+
+
+Opis Projektu
+System zarządzania cyfrową biblioteką to aplikacja umożliwiająca użytkownikom zarządzanie kolekcją książek. 
+Główne funkcjonalności obejmują:
+
+1. Przeglądanie katalogu książek.
+2. Dodawanie nowych książek.
+3. Edytowanie istniejących książek.
+4. Usuwanie książek.
+
+Lista Funkcjonalności
+
+1. Przeglądanie książek: Użytkownicy mogą przeglądać listę dostępnych książek w katalogu.
+2. Dodawanie książek: Użytkownicy mogą dodawać nowe książki do katalogu, 
+podając takie informacje jak tytuł, autor, rok wydania.
+3. Edytowanie książek: Użytkownicy mogą edytować informacje o istniejących książkach.
+4.Usuwanie książek: Użytkownicy mogą usuwać książki z katalogu.
+
+Struktura Projektu
+
+1. models: Definicje modeli danych (np. model książki).
+   . book.js: Definicja modelu książki.
+
+2. controllers: Obsługa żądań HTTP, interakcja z modelami, przekazywanie danych do widoków.
+   . bookController.js: Kontroler obsługujący operacje na książkach.
+
+3. views: Pliki szablonów widoków (EJS).
+   . books.ejs: Widok katalogu książek.
+    . addBook.ejs: Formularz dodawania nowej książki.
+     . editBook.ejs: Formularz edycji informacji o książce.
+
+4.routes: Definicje tras aplikacji.
+    . bookRoutes.js: Trasy związane z operacjami na książkach.
+
+Model Danych
+
+Model książki został zdefiniowany w pliku models/book.js i zawiera następujące pola:
+1. title: String (tytuł książki).
+2. author: String (autor książki).
+3. year: Number (rok wydania).
+
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const bookSchema = new Schema({
+    title: { type: String, required: true },
+    author: { type: String, required: true },
+    year: { type: Number, required: true }
+});
+
+module.exports = mongoose.model('Book', bookSchema);
+
+[
+    {
+        "title": "Harry Potter i Kamień Filozoficzny",
+        "author": "J.K. Rowling",
+        "year": 1997
+    },
+    {
+        "title": "Władca Pierścieni: Drużyna Pierścienia",
+        "author": "J.R.R. Tolkien",
+        "year": 1954
+    }
+]
+
+
+
